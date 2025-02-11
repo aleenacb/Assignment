@@ -1,0 +1,183 @@
+//To read and print array elements
+#include<stdio.h>
+int main() {
+int array[20], i, n;
+printf("Enter the size of array elements: ");
+scanf("%d",&n);
+printf("Enter the array elements");
+for(i = 0; i < n;i++)
+scanf("%d", &array[i]);
+printf("Array elements are :");
+for(i = 0; i < n;i++)
+printf("%d", array[i]);
+}
+
+
+//Find 2nd maximum element in an array
+import java.util.Arrays;
+
+class Main {
+    static int getSecondMaximum(int[] arr) {
+        int n = arr.length;
+        int maximum = -1, secondMaximum = -1;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] > maximum)
+                maximum = arr[i];
+        }
+        for (int i = 0; i < n; i++) {
+            if (arr[i] > secondMaximum && arr[i] != maximum) {
+                secondMaximum = arr[i];
+            }
+        }
+        return secondMaximum;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {54, 15, 19, 85, 5};
+        System.out.println(getSecondMaximum(arr));
+    }
+}
+
+
+//Sum of array elements
+public class Main {
+    public static void main(String args[])
+    {
+        int arr[] = { 3, 1, 2, 5, 4 };
+        sum(arr);
+    }
+
+    public static void sum(int[] arr)
+    {
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++)
+            sum += arr[i];
+        System.out.println("sum of array values : " + sum);
+    }
+}
+
+//Reverse of an array
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {    
+        int[] arr = {1, 2, 3, 4, 5};
+        for (int i = 0; i < arr.length / 2; i++) {
+            int t = arr[i];
+            arr[i] = arr[arr.length - 1 - i];
+            arr[arr.length - 1 - i] = t;
+        }
+
+        System.out.println("" + Arrays.toString(arr));
+    }
+}
+
+
+//Merge sort
+import java.util.Arrays;
+public class Main {
+    public static void mergeArrays(int[] arr1, int[] arr2, int[] arr3) {
+        int n1 = arr1.length;
+        int n2 = arr2.length;
+        int i = 0, j = 0, k = 0;
+        while (i < n1) {
+            arr3[k++] = arr1[i++];
+        }
+        while (j < n2) {
+            arr3[k++] = arr2[j++];
+        }
+        Arrays.sort(arr3);
+    }
+    public static void main(String[] args) {
+        int[] arr1 = {1, 3, 5, 7};
+        int[] arr2 = {2, 4, 6, 8};
+        int[] arr3 = new int[arr1.length + arr2.length];
+
+        mergeArrays(arr1, arr2, arr3);
+
+        for (int value : arr3)
+            System.out.print(value + " ");
+    }
+}
+//Sensor readings
+public class Main {
+    public static void main(String[] args) {
+        // Array of sensor readings
+        int[] sensorReadings = {25, 30, 28, 55, 32, 29};
+       
+        // Define the threshold for faulty sensors
+        int faultThreshold = 50;
+
+        // Loop through the sensor readings and check for faults
+        for (int i = 0; i < sensorReadings.length; i++) {
+            if (sensorReadings[i] > faultThreshold) {
+                System.out.println("Faulty sensor detected at index " + i + " with reading: " + sensorReadings[i]);
+            } else {
+                System.out.println("Sensor at index " + i + " is normal with reading: " + sensorReadings[i]);
+            }
+        }
+    }
+}
+
+//3 debit count
+public class Main {
+    public static void main(String[] args) {
+        // Sample input array
+        int[] values = {100, 20, 1100, 11, 12, 15};
+        // Step 1: Find the maximum value
+        int maxValue = Integer.MIN_VALUE;
+        for (int value : values) {
+            if (value > maxValue) {
+                maxValue = value;
+            }
+        }
+        // Step 2: Count the number of values less than or equal to 15
+        int debitCount = 0;
+        for (int value : values) {
+            if (value <= 15) {
+                debitCount++;
+            }
+        }
+        // Step 3: Calculate the result of 100 - maximum value
+        int result = maxValue - 100;
+        // Step 4: Print the results
+        System.out.println("Maximum Value: " + maxValue);
+        System.out.println("Debit Count : " + debitCount);
+        System.out.println("Maximum Value" + result);
+    }
+}
+
+
+//Customer support ticket ID generations
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+    // Method to generate a unique ticket ID
+    public static String generateTicketID(String customerName) {
+        // Generate a random number between 1000 and 9999
+        Random random = new Random();
+        int randomNumber = 1000 + random.nextInt(9000); // 9000 to ensure the range is 1000-9999
+
+        // Create the ticket ID in the specified format
+        return "TKT - " + customerName + " - " + randomNumber;
+    }
+
+    public static void main(String[] args) {
+        // Create a scanner to read input
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt for customer name
+        System.out.print("Enter customer name: ");
+        String customerName = scanner.nextLine();
+
+        // Generate the ticket ID
+        String ticketID = generateTicketID(customerName);
+
+        // Print the generated ticket ID
+        System.out.println("Generated Ticket ID: " + ticketID);
+
+        // Close the scanner
+        scanner.close();
+    }
+}
