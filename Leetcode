@@ -1,0 +1,176 @@
+//Leetcode solution for Valid Anagram
+import java.util.Scanner;
+
+class Main {
+    // Make the isAnagram method static
+    public static boolean isAnagram(String s, String t) {
+        if (s.length() != t.length())
+            return false;
+
+        int[] count = new int[26];
+
+        for (final char c : s.toCharArray())
+            ++count[c - 'a'];
+
+        for (final char c : t.toCharArray()) {
+            if (count[c - 'a'] == 0)
+                return false;
+            --count[c - 'a'];
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner obj = new Scanner(System.in);
+        
+        // Taking input from the user
+        System.out.print("Enter first string: ");
+        String s = obj.nextLine();
+        
+        System.out.print("Enter second string: ");
+        String t = obj.nextLine();
+        
+        // Call the isAnagram method and print the result
+        boolean result = isAnagram(s, t);
+        if (result) {
+            System.out.println(true);
+        } else {
+            System.out.println(false);
+        }
+        
+        obj.close();
+    }
+}
+
+
+//Leetcode solution for isomorphic strings
+import java.util.HashMap;
+import java.util.Map;
+
+class Main {
+    public boolean isIsomorphic(String s, String t) {
+        Map<Character, Integer> charToIndex_s = new HashMap<>();
+        Map<Character, Integer> charToIndex_t = new HashMap<>();
+
+        for (int i = 0; i < s.length(); ++i) {
+            if (charToIndex_s.put(s.charAt(i), i) != charToIndex_t.put(t.charAt(i), i)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Main solution = new Main();
+
+        // Test cases
+        String s1 = "egg";
+        String t1 = "add";
+        System.out.println("Is \"" + s1 + "\" isomorphic to \"" + t1 + "\"? " + solution.isIsomorphic(s1, t1));
+
+        String s2 = "foo";
+        String t2 = "add";
+        System.out.println("Is \"" + s2 + "\" isomorphic to \"" + t2 + "\"? " + solution.isIsomorphic(s2, t2));
+
+        String s3 = "paper";
+        String t3 = "title";
+        System.out.println("Is \"" + s3 + "\" isomorphic to \"" + t3 + "\"? " + solution.isIsomorphic(s3, t3));
+
+        String s4 = "badc";
+        String t4 = "baba";
+        System.out.println("Is \"" + s4 + "\" isomorphic to \"" + t4 + "\"? " + solution.isIsomorphic(s4, t4));
+
+        String s5 = "abc";
+        String t5 = "def";
+        System.out.println("Is \"" + s5 + "\" isomorphic to \"" + t5 + "\"? " + solution.isIsomorphic(s5, t5));
+    }
+}
+
+//Leetcode solution for reverse string
+class Main {
+    public void reverseString(char[] s) {
+        int l = 0;
+        int r = s.length - 1;
+
+        while (l < r) {
+            char temp = s[l];
+            s[l++] = s[r];
+            s[r--] = temp;
+        }
+    }
+
+    public static void main(String[] args) {
+        Main solution = new Main();
+
+        // Test case 1
+        char[] test1 = {'h', 'e', 'l', 'l', 'o'};
+        System.out.println("Original: " + new String(test1));
+        solution.reverseString(test1);
+        System.out.println("Reversed: " + new String(test1));
+
+        // Test case 2
+        char[] test2 = {'H', 'a', 'n', 'n', 'a', 'h'};
+        System.out.println("Original: " + new String(test2));
+        solution.reverseString(test2);
+        System.out.println("Reversed: " + new String(test2));
+
+        // Test case 3
+        char[] test3 = {'A', 'B', 'C', 'D', 'E'};
+        System.out.println("Original: " + new String(test3));
+        solution.reverseString(test3);
+        System.out.println("Reversed: " + new String(test3));
+
+        // Test case 4
+        char[] test4 = {'r', 'a', 'c', 'e', 'c', 'a', 'r'};
+        System.out.println("Original: " + new String(test4));
+        solution.reverseString(test4);
+        System.out.println("Reversed: " + new String(test4));
+    }
+}
+
+//Reverse a string of vowel
+class Main {
+    public String reverseVowels(String s) {
+        StringBuilder sb = new StringBuilder(s);
+        int l = 0;
+        int r = s.length() - 1;
+
+        while (l < r) {
+            while (l < r && !isVowel(sb.charAt(l)))
+                ++l;
+            while (l < r && !isVowel(sb.charAt(r)))
+                --r;
+            sb.setCharAt(l, sb.charAt(r));
+            sb.setCharAt(r, sb.charAt(l));
+            ++l;
+            --r;
+        }
+
+        return sb.toString();
+    }
+
+    private boolean isVowel(char c) {
+        return "aeiouAEIOU".indexOf(c) != -1;
+    }
+
+    public static void main(String[] args) {
+        Main solution = new Main();
+
+        // Test cases
+        String test1 = "hello";
+        System.out.println("Original: " + test1 + " | Reversed Vowels: " + solution.reverseVowels(test1));
+
+        String test2 = "leetcode";
+        System.out.println("Original: " + test2 + " | Reversed Vowels: " + solution.reverseVowels(test2));
+
+        String test3 = "aA";
+        System.out.println("Original: " + test3 + " | Reversed Vowels: " + solution.reverseVowels(test3));
+
+        String test4 = " ";
+        System.out.println("Original: \"" + test4 + "\" | Reversed Vowels: \"" + solution.reverseVowels(test4) + "\"");
+
+        String test5 = "race a car";
+        System.out.println("Original: " + test5 + " | Reversed Vowels: " + solution.reverseVowels(test5));
+    }
+}
